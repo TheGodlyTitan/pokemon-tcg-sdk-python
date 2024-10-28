@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import Optional, List
 
 from pokemontcgsdk.ability import Ability
@@ -64,3 +64,6 @@ class Card():
         if response.get('tcgplayer', {}).get('prices', {}).get('1stEditionHolofoil'):
             response['tcgplayer']['prices']['firstEditionHolofoil'] = response['tcgplayer']['prices'].pop('1stEditionHolofoil')
         return response
+
+    def to_dict(self):
+        return asdict(self)
